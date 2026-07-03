@@ -86,8 +86,13 @@
     z-index:50;
     transition:transform .5s ease;
     box-shadow:var(--sombra);
+    white-space:nowrap;
+    cursor:pointer;
   }
   .monogram.show{ transform:translateX(-50%) translateY(0); }
+  @media (max-width:480px){
+    .monogram{ font-size:11.5px; padding:7px 14px; letter-spacing:0.06em; top:16px; }
+  }
 
   /* floating RSVP pill */
   .cta-flotante{
@@ -234,22 +239,12 @@
     background:transparent; color:var(--eucalipto-2); border:1.5px solid var(--eucalipto-2);
   }
 
-  /* Cronograma */
-  .cronograma{ background:var(--lino-2); }
-  .linea-tiempo{ max-width:640px; margin:56px auto 0; position:relative; padding-left:36px; }
-  .linea-tiempo::before{ content:''; position:absolute; left:6px; top:6px; bottom:6px; width:1px; background:var(--linea); }
-  .item-tiempo{ position:relative; padding-bottom:44px; }
-  .item-tiempo:last-child{ padding-bottom:0; }
-  .item-tiempo::before{
-    content:''; position:absolute; left:-36px; top:4px; width:13px; height:13px; border-radius:50%;
-    background:var(--crema); border:2px solid var(--dorado);
-  }
-  .item-tiempo .hora{ font-family:'Cinzel', serif; font-size:12px; letter-spacing:0.14em; color:var(--dorado); text-transform:uppercase; }
-  .item-tiempo h4{ font-family:'Playfair Display', serif; font-style:italic; font-size:22px; margin-top:4px; color:var(--eucalipto-2); font-weight:500; }
-  .item-tiempo p{ color:var(--carbon-suave); margin-top:4px; }
+  /* aparición al hacer scroll */
+  .reveal{ opacity:0; transform:translateY(32px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
 
   /* Vestimenta */
-  .vestimenta{ text-align:center; }
+  .vestimenta{ text-align:center; background:var(--lino-2); }
   .paleta{ display:flex; justify-content:center; gap:14px; margin:36px 0 26px; flex-wrap:wrap; }
   .chip{ width:44px; height:44px; border-radius:50%; border:3px solid var(--crema); box-shadow:0 4px 12px rgba(46,43,36,0.15); }
   .nota{
@@ -258,12 +253,12 @@
   }
 
   /* Regalos */
-  .regalos{ background:var(--lino-2); text-align:center; }
+  .regalos{ text-align:center; }
   .regalos p.mensaje{ max-width:560px; margin:20px auto 0; color:var(--carbon-suave); font-style:italic; font-size:19px; }
   .regalo-icono{ width:46px; height:46px; margin:0 auto; color:var(--dorado); }
 
   /* RSVP */
-  .rsvp{ text-align:center; }
+  .rsvp{ text-align:center; background:var(--lino-2); }
   .rsvp .marco-rsvp{
     max-width:520px; margin:40px auto 0; padding:46px 36px; border-radius:20px;
     border:1.5px solid var(--dorado-claro); background:var(--crema); box-shadow:var(--sombra);
@@ -271,7 +266,7 @@
   .rsvp .marco-rsvp p{ color:var(--carbon-suave); margin-bottom:24px; }
 
   /* FAQ */
-  .faq{ background:var(--lino-2); }
+  .faq{ }
   .faq-lista{ max-width:680px; margin:46px auto 0; }
   details{
     border-bottom:1px solid var(--linea); padding:20px 4px;
@@ -290,6 +285,7 @@
   /* Footer */
   footer{
     text-align:center; padding:80px 24px 50px; position:relative;
+    background:var(--lino-2);
   }
   footer .script{ font-size:42px; }
   footer .hashtag{ margin-top:14px; font-family:'Cinzel', serif; letter-spacing:0.18em; font-size:12px; color:var(--dorado); text-transform:uppercase; }
@@ -352,7 +348,7 @@
 </header>
 
 <!-- BIENVENIDA -->
-<section class="bienvenida">
+<section class="bienvenida reveal">
   <div class="wrap">
     <div class="divisor">
       <svg viewBox="0 0 160 40" class="rama"><use href="#rama-svg" width="60" height="75" x="0" y="-18"/><use href="#rama-svg" width="60" height="75" x="100" y="-18" transform="scale(-1,1) translate(-160,0)"/></svg>
@@ -366,7 +362,7 @@
 </section>
 
 <!-- COUNTDOWN -->
-<section class="countdown">
+<section class="countdown reveal">
   <div class="wrap">
     <div class="section-titulo">
       <p class="eyebrow">Cuenta regresiva</p>
@@ -382,7 +378,7 @@
 </section>
 
 <!-- CUANDO Y DONDE -->
-<section id="cuando-donde">
+<section id="cuando-donde" class="reveal">
   <div class="wrap">
     <div class="section-titulo">
       <p class="eyebrow">Cuándo y dónde</p>
@@ -406,40 +402,8 @@
   </div>
 </section>
 
-<!-- CRONOGRAMA -->
-<section class="cronograma">
-  <div class="wrap">
-    <div class="section-titulo">
-      <p class="eyebrow">El gran día</p>
-      <h2 class="display">Cronograma</h2>
-    </div>
-    <div class="linea-tiempo">
-      <div class="item-tiempo">
-        <p class="hora">18:00 hrs</p>
-        <h4>Ceremonia</h4>
-        <p>Nos daremos el "sí, quiero" rodeados de quienes más queremos.</p>
-      </div>
-      <div class="item-tiempo">
-        <p class="hora">19:00 hrs</p>
-        <h4>Cóctel de bienvenida</h4>
-        <p>Un brindis para comenzar la celebración con calma, entre jardines.</p>
-      </div>
-      <div class="item-tiempo">
-        <p class="hora">20:30 hrs</p>
-        <h4>Cena</h4>
-        <p>Sentados a la mesa, compartiremos una cena pensada con cariño.</p>
-      </div>
-      <div class="item-tiempo">
-        <p class="hora">22:30 hrs</p>
-        <h4>Fiesta</h4>
-        <p>Música, baile y celebración hasta que el cuerpo aguante.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- VESTIMENTA -->
-<section class="vestimenta">
+<section class="vestimenta reveal">
   <div class="wrap">
     <div class="section-titulo">
       <p class="eyebrow">Código de vestimenta</p>
@@ -457,7 +421,7 @@
 </section>
 
 <!-- REGALOS -->
-<section class="regalos">
+<section class="regalos reveal">
   <div class="wrap">
     <svg class="regalo-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 9h18M12 9v12"/><path d="M12 9c-2-4-8-4-8-1 0 1.5 2 1 8 1zM12 9c2-4 8-4 8-1 0 1.5-2 1-8 1z"/></svg>
     <div class="section-titulo" style="margin-top:18px;">
@@ -470,7 +434,7 @@
 </section>
 
 <!-- RSVP -->
-<section class="rsvp" id="rsvp">
+<section class="rsvp reveal" id="rsvp">
   <div class="wrap">
     <div class="section-titulo">
       <p class="eyebrow">Confirmación</p>
@@ -484,7 +448,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="faq">
+<section class="faq reveal">
   <div class="wrap">
     <div class="section-titulo">
       <p class="eyebrow">Buena onda</p>
@@ -512,7 +476,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer class="reveal">
   <svg width="70" height="88" style="margin:0 auto; display:block;" class="rama"><use href="#rama-svg" width="70" height="88"/></svg>
   <p class="script">Javiera &amp; Nicolás</p>
   <p class="hashtag">#JavieraYNicolas2027</p>
@@ -522,6 +486,7 @@
 <script>
   // monogram + floating CTA on scroll
   const monogram = document.getElementById('monogram');
+  monogram.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   const ctaFlotante = document.getElementById('ctaFlotante');
   const hero = document.querySelector('.hero');
   const heroObs = new IntersectionObserver((entries)=>{
@@ -540,6 +505,18 @@
     });
   }, { threshold: 0.4 });
   rsvpObs.observe(rsvpSection);
+
+  // aparición de secciones al hacer scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => revealObs.observe(el));
 
   // countdown
   const boda = new Date('2027-03-27T18:00:00');
